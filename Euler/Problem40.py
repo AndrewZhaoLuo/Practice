@@ -16,17 +16,31 @@ d1 × d10 × d100 × d1000 × d10000 × d100000 × d1000000
 MAX_DIGITS  = 1000000
 totalDigits = 0
 num         = 1
+ds          = [] #index 0 = d1, index 1 = d10, etc.
 
 total       = 1 #answer to the question
 
 while MAX_DIGITS > totalDigits:
     #find the number of the digits in current num
     tempNum     = num
-    digitCount  = 0
-    while tempNum > 0:
+    digitCount  = 1
+    while tempNum > 9:
         digitCount += 1
         tempNum /= 10
-    num += 1
     
-    totalDigits += digitCount
+    #figure out if we managed to get past a digit of interest
+    for i in xrange(7):
+        if totalDigits < 10 ** i and totalDigits + digitCount >= 10 ** i:
+            #extract the relevant digit
+            tempNum = num
+            digitIndex = totalDigits + digitCount - 10 ** i
+            while digitIndex > 0:
+                tempNum /= 10
+                digitIndex -= 1
+            ds.append(tempNum % 10)
 
+    #updadte digit count
+    totalDigits += digitCount
+    num += 1
+
+print ds
