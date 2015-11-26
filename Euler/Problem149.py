@@ -102,26 +102,31 @@ for i in xrange(55, 4000000 + 1):
 
 print "numbers generated"
 
-table = []
+table1 = []
 for r in xrange(0, 2000):
-    table.append([])
+    table1.append([])
     for c in xrange(0, 2000):
-        table[r].append(nums[r * 2000 + c])
+        table1[r].append(nums[r * 2000 + c])
 
-print "table complete"
+table2 = []
+for r in xrange(0, 2000):
+    table2.append([])
+    for c in xrange(0, 2000):
+        table2[r].append(nums[r + c * 2000])
+
+print "tables complete"
 
 #there are 2000 rows, 2000 cols, probably around that many diagonals and anti-diagonls
 #rows and cols
 curMax = 0
 for i in xrange(0, 2000):
-    curMax = max(curMax, longestSum(table[i]))#rows
-    curArray = []
-    for r in xrange(0, 2000): #cols
-        curArray.append(table[r][i])
-    curMax = max(curMax, longestSum(curArray))
+    curMax = max(curMax, longestSum(table1[i]))#rows
+    curMax = max(curMax, longestSum(table2[i]))#cols
+
 print "row and col max: " , curMax
 
-#no need to do below, answer above! Took ~30 minutes D:
+#no need to do below, answer above! #lazy is best
+#also, I don't know an efficient way to deal with diagnonals D:
 '''
 #diagonals which touch top part of table
 for c in xrange(0, 2000):
