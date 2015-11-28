@@ -46,4 +46,4 @@ minimum value for x2+x3+x4...+xn is minimized that way
 '''
 
 totSum = 0 
-for k in xrange(1, 12000 + 1)
+#for k in xrange(1, 12000 + 1)
