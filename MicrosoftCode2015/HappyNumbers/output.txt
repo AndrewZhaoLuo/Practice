@@ -1,0 +1,10 @@
+happy 6
+unhappy 9
+unhappy 14
+unhappy 12
+unhappy 9
+unhappy 15
+unhappy 8
+unhappy 12
+unhappy 14
+happy 4
