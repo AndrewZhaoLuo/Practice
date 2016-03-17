@@ -1,0 +1,39 @@
+# -*- coding: utf-8 -*-
+from timeit import default_timer as timer
+
+start = timer()
+
+#index = number when starting and run collatz
+#element at index = number of iterations before hitting 1
+numbers = [-1] * 1000001
+
+numbers[0] = 0
+numbers[1] = 0
+
+def collatz(n):
+    #base cases
+    if numbers[n] != -1:
+        return numbers[n]
+    if n == 0:
+        return 0
+
+    #recursive cases for hailstone under 1000000
+    result = 0
+    if(n % 2 == 0):
+        result = 1 + collatz(n / 2)
+    else:
+        result = 1 + collatz(3 * n + 1)
+
+    if(n < len(numbers)):
+        numbers[n] = result
+        return numbers[n]
+    else:
+        return result
+    
+#basic idea, run collatz on all numbers under 1000000 and memoize known sequence lengths along the way
+for i in xrange(1, 999999):
+    print collatz(i)
+
+end = timer()
+
+print (end - start)
